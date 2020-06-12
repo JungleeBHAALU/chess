@@ -1,0 +1,28 @@
+
+
+.Maintable{
+    height: 600px;
+    width: 600px;
+    border:solid;
+    
+    border-color: black;  
+    padding: 0px;
+    margin: 0px;
+}
+  
+
+.blackBox{
+    padding: 0%;
+width: 6px;
+height: 6px;
+background-color: green;
+}
+.whiteBox{
+    padding: 0px;
+    width: 6px;
+    height: 6px;
+    background-color: wheat;
+}
+tr{
+    padding: 0%;
+}
