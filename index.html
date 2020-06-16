@@ -12,30 +12,30 @@
 
 </head>
 
-<body>
+<body onload="playerTurn()">
     <div >
     <table id="gameBoard" class="Maintable">
 
         <tr>
-            <td id="71" class="whiteBox"><img src="chessPieces/whiteRook.JPG"></td>
-            <td id="72" class="blackBox"><img src="chessPieces/whiteKnight.JPG"></td>
-            <td id="73" class="whiteBox"><img src="chessPieces/whiteBishop.JPG"></td>
-            <td id="74" class="blackBox"><img src="chessPieces/whiteKing.JPG"></td>
-            <td id="75" class="whiteBox"><img src="chessPieces/whiteQueen.JPG"></td>
-            <td id="76" class="blackBox"><img src="chessPieces/whiteBishop.JPG"></td>
-            <td id="77" class="whiteBox"><img src="chessPieces/whiteKnight.JPG"></td>
-            <td id="78" class="blackBox"><img src="chessPieces/whiteRook.JPG"></td>
+            <td id="71" class="whiteBox"><img id="wr1" src="chessPieces/whiteRook.JPG"></td>
+            <td id="72" class="blackBox"><img id="wk1" src="chessPieces/whiteKnight.JPG"></td>
+            <td id="73" class="whiteBox"><img id="wb1" src="chessPieces/whiteBishop.JPG"></td>
+            <td id="74" class="blackBox"><img id="wk" src="chessPieces/whiteKing.JPG"></td>
+            <td id="75" class="whiteBox"><img id="wq" src="chessPieces/whiteQueen.JPG"></td>
+            <td id="76" class="blackBox"><img id="wb2" src="chessPieces/whiteBishop.JPG"></td>
+            <td id="77" class="whiteBox"><img id="wk2" src="chessPieces/whiteKnight.JPG"></td>
+            <td id="78" class="blackBox"><img id="wr2" src="chessPieces/whiteRook.JPG"></td>
            
         </tr>
         <tr>
-            <td id="61" class="blackBox"><img src="chessPieces/whitePawn.JPG"></td>
-            <td id="62" class="whiteBox"><img src="chessPieces/whitePawn.JPG"></td>
-            <td id="63" class="blackBox"><img src="chessPieces/whitePawn.JPG"></td>
-            <td id="64" class="whiteBox"><img src="chessPieces/whitePawn.JPG"></td>
-            <td id="65" class="blackBox"><img src="chessPieces/whitePawn.JPG"></td>
-            <td id="66" class="whiteBox"><img src="chessPieces/whitePawn.JPG"></td>
-            <td id="67" class="blackBox"><img src="chessPieces/whitePawn.JPG"></td>
-            <td id="68" class="whiteBox"><img src="chessPieces/whitePawn.JPG"></td>
+            <td id="61" class="blackBox"><img id="wp1" src="chessPieces/whitePawn.JPG"></td>
+            <td id="62" class="whiteBox"><img id="wp2" src="chessPieces/whitePawn.JPG"></td>
+            <td id="63" class="blackBox"><img id="wp3" src="chessPieces/whitePawn.JPG"></td>
+            <td id="64" class="whiteBox"><img id="wp4" src="chessPieces/whitePawn.JPG"></td>
+            <td id="65" class="blackBox"><img id="wp5" src="chessPieces/whitePawn.JPG"></td>
+            <td id="66" class="whiteBox"><img id="wp6" src="chessPieces/whitePawn.JPG"></td>
+            <td id="67" class="blackBox"><img id="wp7" src="chessPieces/whitePawn.JPG"></td>
+            <td id="68" class="whiteBox"><img id="wp8" src="chessPieces/whitePawn.JPG"></td>
             
         </tr>
         <tr>
@@ -84,26 +84,26 @@
         </tr>
         
         <tr>
-            <td id="11" class="whiteBox"><img src="chessPieces/blackPawn.JPG"></td>
-            <td id="12" class="blackBox"><img src="chessPieces/blackPawn.JPG"></td>
-            <td id="13" class="whiteBox"><img src="chessPieces/blackPawn.JPG"></td>
-            <td id="14" class="blackBox"><img src="chessPieces/blackPawn.JPG"></td>
-            <td id="15" class="whiteBox"><img src="chessPieces/blackPawn.JPG"></td>
-            <td id="16" class="blackBox"><img src="chessPieces/blackPawn.JPG"></td>
-            <td id="17" class="whiteBox"><img src="chessPieces/blackPawn.JPG"></td>
-            <td id="18" class="blackBox"><img src="chessPieces/blackPawn.JPG"></td>
+            <td id="11" class="whiteBox"><img id="bp1" src="chessPieces/blackPawn.JPG"></td>
+            <td id="12" class="blackBox"><img id="bp2" src="chessPieces/blackPawn.JPG"></td>
+            <td id="13" class="whiteBox"><img id="bp3" src="chessPieces/blackPawn.JPG"></td>
+            <td id="14" class="blackBox"><img id="bp4" src="chessPieces/blackPawn.JPG"></td>
+            <td id="15" class="whiteBox"><img id="bp5" src="chessPieces/blackPawn.JPG"></td>
+            <td id="16" class="blackBox"><img id="bp6" src="chessPieces/blackPawn.JPG"></td>
+            <td id="17" class="whiteBox"><img id="bp7" src="chessPieces/blackPawn.JPG"></td>
+            <td id="18" class="blackBox"><img id="bp8" src="chessPieces/blackPawn.JPG"></td>
             
         </tr>
         
         <tr>
-            <td id="01" class="blackBox"><img src="chessPieces/blackRook.JPG"></td>
-            <td id="02" class="whiteBox"><img src="chessPieces/blackKnight.JPG"></td>
-            <td id="03" class="blackBox"><img src="chessPieces/blackBishop.JPG"></td>
-            <td id="04" class="whiteBox"><img src="chessPieces/blackKing.JPG"></td>
-            <td id="05" class="blackBox"><img src="chessPieces/blackQueen.JPG"></td>
-            <td id="06" class="whiteBox"><img src="chessPieces/blackBishop.JPG"></td>
-            <td id="07" class="blackBox"><img src="chessPieces/blackKnight.JPG"></td>
-            <td id="08" class="whiteBox"><img src="chessPieces/blackRook.JPG"></td>
+            <td id="01" class="blackBox"><img id="br1" src="chessPieces/blackRook.JPG"></td>
+            <td id="02" class="whiteBox"><img id="bk1" src="chessPieces/blackKnight.JPG"></td>
+            <td id="03" class="blackBox"><img id="bb1" src="chessPieces/blackBishop.JPG"></td>
+            <td id="04" class="whiteBox"><img id="bk" src="chessPieces/blackKing.JPG"></td>
+            <td id="05" class="blackBox"><img id="bq" src="chessPieces/blackQueen.JPG"></td>
+            <td id="06" class="whiteBox"><img id="bb2" src="chessPieces/blackBishop.JPG"></td>
+            <td id="07" class="blackBox"><img id="bk2" src="chessPieces/blackKnight.JPG"></td>
+            <td id="08" class="whiteBox"><img id="br2" src="chessPieces/blackRook.JPG"></td>
            
         </tr>
     </table>
