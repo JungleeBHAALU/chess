@@ -37,7 +37,7 @@ var white={
     'pawn8':{cell:'78',status:'active',role:'pawn',fresh:'yes',src:'chessPieces/whitePawn.JPG',id:'wp8'}
 };
 
-var playerCount=0;
+var playerCount=1;
 
 
 
@@ -208,10 +208,14 @@ var x=parseInt(chessBoxId.charAt(0));   //if 'chessBoxId=43' which is string,tak
 var y=parseInt(chessBoxId.charAt(1));   //if 'chessBoxId=43' which is string,takes 2nd char so y=4
 
 if(playerCount==0){
+     var flag=0;
      if(black['pawn'+chessPieceId.charAt(2)]['fresh']=='yes'){
          if((x+1)<=8){                                          //for one step ahead
                if(!(enemyArr.includes(((x+1)*10+y).toString()) || friendlyArr.includes(((x+1)*10+y).toString()))){ //checks enemy or freindly troops are there
                     pathIdArr.push((x+1)*10+y);
+               }
+               else{
+                    flag++;
                }
                if((y-1)>=1){
                  if(enemyArr.includes(((x+1)*10+(y-1)).toString())){     //checks enemy troops are there and then adds id 
@@ -226,19 +230,21 @@ if(playerCount==0){
          }
          
          //for two steps ahead
-         if(!(enemyArr.includes(((x+2)*10+y).toString()) || friendlyArr.includes(((x+2)*10+y).toString()))){ //checks enemy or freindly troops are there
+         if(flag==0){
+               if(!(enemyArr.includes(((x+2)*10+y).toString()) || friendlyArr.includes(((x+2)*10+y).toString()))){ //checks enemy or freindly troops are there
                pathIdArr.push((x+2)*10+y);
-         }
-               if((y-1)>=1){
-                 if(enemyArr.includes(((x+2)*10+(y-1)).toString())){     //checks enemy troops are there and then adds id 
-                    pathIdArr.push((x+2)*10+(y-1));  
                }
-          }  
+               if((y-1)>=1){
+                    if(enemyArr.includes(((x+2)*10+(y-1)).toString())){     //checks enemy troops are there and then adds id 
+                    pathIdArr.push((x+2)*10+(y-1));  
+                    }
+               }  
             if((y+1)<=8){
                if(enemyArr.includes(((x+2)*10+(y+1)).toString())){     //checks enemy troops are there and then adds id 
                     pathIdArr.push((x+2)*10+(y+1));  
                }
             }  
+         }
          
          
      }
@@ -262,11 +268,14 @@ if(playerCount==0){
 
 }
 else{
-
+var flag=0;
      if(white['pawn'+chessPieceId.charAt(2)]['fresh']=='yes'){
           if((x-1)>=1){                                          //for one step ahead
                 if(!(enemyArr.includes(((x-1)*10+y).toString()) || friendlyArr.includes(((x-1)*10+y).toString()))){ //checks enemy or freindly troops are there
                      pathIdArr.push((x-1)*10+y);
+                }
+                else{
+                    flag++;
                 }
                 if((y-1)>=1){
                   if(enemyArr.includes(((x-1)*10+(y-1)).toString())){     //checks enemy troops are there and then adds id 
@@ -281,6 +290,7 @@ else{
           }
           
           //for two steps ahead
+          if(flag==0){
           if(!(enemyArr.includes(((x-2)*10+y).toString()) || friendlyArr.includes(((x-2)*10+y).toString()))){ //checks enemy or freindly troops are there
                 pathIdArr.push((x-2)*10+y);
           }
@@ -294,6 +304,7 @@ else{
                      pathIdArr.push((x-2)*10+(y+1));  
                 }
              }  
+          }
           
           
       }
@@ -317,7 +328,17 @@ else{
  
 }
 
+console.log(pathIdArr);
+}
 
+function PostionArrayWhite(){    //return white position array of ids
+         
+     var whitePositionArr=[]
+     for(var k in white){
+          whitePositionArr.push(white[k]['cell']);
+       };
+     //  console.log(whitePositionArr);
+     return whitePositionArr;
 }
 
 
@@ -335,12 +356,17 @@ else{
 
 
 
-
-
 function start1(){
-start('11');
-console.log('bishop path---------------------------------------------------------------------------------------');
-bishopPath('35'); 
-console.log('knights path---------------------------------------------------------------------------------------');
-knightsPath('55');
+// start('11');
+// console.log('bishop path---------------------------------------------------------------------------------------');
+// bishopPath('35'); 
+// console.log('knights path---------------------------------------------------------------------------------------');
+// knightsPath('55');
+// console.log('knights path---------------------------------------------------------------------------------------');
+// var enemyArr=['65'];
+// var friendlyArr=['64'];
+
+// pawnsPath('74','wp4',enemyArr,friendlyArr);
+PostionArrayWhite();
+
 }
