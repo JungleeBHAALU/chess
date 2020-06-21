@@ -64,13 +64,14 @@ function  enablePlayerToPlay(playerObj,enemyObj){ //allow pieces of active playe
 
 function selectPiece(pieceId){  //selects piece and calls showPath()
     console.log("hi there i'm "+pieceId);
-    var idArr=calculatePath(pieceId);
+    calculatePath(pieceId);
 }
 
 
 function calculatePath(chessPieceId){  //calculates path
 var enemyArr=[];
 var friendlyArr=[];
+
       if(playerCount==0){
           enemyArr=PostionArrayWhite();     //returns array
           friendlyArr=PostionArrayblack();     //returns array
@@ -79,10 +80,68 @@ var friendlyArr=[];
           enemyArr=PostionArrayblack();     //returns array
           friendlyArr=PostionArrayWhite();     //returns array
     }
-if(pieceId.charAt(0)=='p'){
-     pawnsPath(chessBoxIdGiver(chessPieceId),chessPieceId,enemyArr,friendlyArr)
+if(chessPieceId.charAt(1)=='p'){
+     highlightPath(pawnsPath(chessBoxIdGiver(chessPieceId),chessPieceId,enemyArr,friendlyArr),chessPieceId);
     }
 
+}
+
+function highlightPath(pathIdArr,chessPieceId){                     //highlight the path of piece and applies onlick event on boxes
+for(var i=0;i<pathIdArr.length;i++){
+     var elem=document.getElementById(pathIdArr[i].toString());
+     elem.className+=' '+'blink';
+     elem.setAttribute("onclick","Action('"+chessPieceId+"','"+pathIdArr[i].toString()+"')");
+}
+}
+
+function Action(chessPieceId,chessboxId){                          //used for taking action i.e move pieces kill pieces
+     var enemyArr=[];                                              
+if(playerCount==0){                                                
+     enemyArr=PostionArrayWhite();                                 //returns enemy Array
+     if(enemyArr.includes(chessboxId)){                           
+          var element = document.getElementById(chessboxId);     
+          element.removeChild(element.childNodes[0]);                            //deletes enemy piece
+          markPieceDeadInObj(white,chessboxId);                    //changes status=dead function in playerObj
+     }
+     MovePiece(chessboxId,chessPieceId,black);
+     
+}
+else{
+     enemyArr=PostionArrayblack();                                  //returns enemy Array
+     if(enemyArr.includes(chessboxId)){
+          var element = document.getElementById(chessboxId);      
+          element.removeChild(element.childNodes[0]);                           //deletes enemy piece
+          markPieceDeadInObj(black,chessboxId);                     //changes status=dead function in playerObj
+     }
+     
+     MovePiece(chessboxId,chessPieceId,white);
+}
+}
+
+function MovePiece(chessboxId,chessPieceId,playerObj){              //moves piece
+     var elem1=document.getElementById(chessPieceId);
+     elem1.remove();                                                //remove from initial cell
+     var elem = document.createElement("img");
+     elem.setAttribute("id",chessPieceId);
+     for(var k in playerObj){
+          if(playerObj[k]['id']==chessPieceId){
+               elem.src=playerObj[k]['src'];
+               playerObj[k]['cell']=chessboxId;                         //changes cell in playerObj
+               break;
+          }
+     }
+     
+     document.getElementById(chessboxId).appendChild(elem);      //move piece to cell(box)
+}
+
+function markPieceDeadInObj(playerObj,chessBoxId){               //changes status=dead function in playerObj
+for(var k in playerObj){
+     if(playerObj[k]['cell']==chessBoxId)
+     {
+          playerObj[k]['status']='dead';                         //marks status='dead' in playerObj
+          break;
+     }
+}
 }
 
 function chessBoxIdGiver(chessPieceId){     //returns chessBoxId id chess piec
@@ -108,6 +167,8 @@ function chessBoxIdGiver(chessPieceId){     //returns chessBoxId id chess piec
      return chessBoxId;
 }
 
+
+
 function PostionArrayWhite(){    //return white position array of ids
          
      var whitePositionArr=[]
@@ -131,7 +192,6 @@ function pawnsPath(chessBoxId,chessPieceId,enemyArr,friendlyArr) {              
 
 var pathIdArr=[];                           //id array of possible path
 
-var killArray=[];
 
 var x=parseInt(chessBoxId.charAt(0));   //if 'chessBoxId=43' which is string,takes 1st char so x=4
 
@@ -259,6 +319,7 @@ var flag=0;
 }
 
 console.log(pathIdArr);
+return pathIdArr;
 }
 
 
