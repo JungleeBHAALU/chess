@@ -41,7 +41,7 @@ var playerCount=1;
 
 
 
-function start(chessBoxId) {              //rook path calculater function
+function rooksPath(chessBoxId,enemyArr,friendlyArr) {              //rook path calculater function
 
 var pathIdArr=[];                           //id array of path
 
@@ -50,26 +50,63 @@ var x=parseInt(chessBoxId.charAt(0));   //if 'chessBoxId=43' which is string,tak
 var y=parseInt(chessBoxId.charAt(1));   //if 'chessBoxId=43' which is string,takes 2nd char so y=4
   
 for(var i=x,j=y+1;j<=8;j++){
-       pathIdArr.push(i*10+j);
+     if(enemyArr.includes((i*10+j).toString())){
+          pathIdArr.push(i*10+j);
+          break;
+     }
+     else if(friendlyArr.includes((i*10+j).toString())){
+          break;
+     }
+     else{
+          pathIdArr.push(i*10+j);
+     }
+      
   }
 
 for(var i=x,j=y-1;j>=1;j--){
-       pathIdArr.push(i*10+j);
+     if(enemyArr.includes((i*10+j).toString())){
+          pathIdArr.push(i*10+j);
+          break;
+     }
+     else if(friendlyArr.includes((i*10+j).toString())){
+          break;
+     }
+     else{
+          pathIdArr.push(i*10+j);
+     }
   }
 
 for(var i=x+1,j=y;i<=8;i++){
-       pathIdArr.push(i*10+j);
+     if(enemyArr.includes((i*10+j).toString())){
+          pathIdArr.push(i*10+j);
+          break;
+     }
+     else if(friendlyArr.includes((i*10+j).toString())){
+          break;
+     }
+     else{
+          pathIdArr.push(i*10+j);
+     }
   }
 
 for(var i=x-1,j=y;i>=1;i--){
-       pathIdArr.push(i*10+j);
+     if(enemyArr.includes((i*10+j).toString())){
+          pathIdArr.push(i*10+j);
+          break;
+     }
+     else if(friendlyArr.includes((i*10+j).toString())){
+          break;
+     }
+     else{
+          pathIdArr.push(i*10+j);
+     }
   }
 
 console.log(pathIdArr);                  //prints the array 
 }
 
 
-function bishopPath(chessBoxId) {              //bishop path calculater function
+function bishopPath(chessBoxId,enemyArr,friendlyArr) {              //bishop path calculater function
 
     var pathIdArr=[];                           //id array of possible path
     
@@ -78,59 +115,169 @@ function bishopPath(chessBoxId) {              //bishop path calculater function
     var y=parseInt(chessBoxId.charAt(1));   //if 'chessBoxId=43' which is string,takes 2nd char so y=4
       
     for(var i=x+1,j=y-1;i<=8&&j>=1;j--,i++){
-           pathIdArr.push(i*10+j);
-      }
+          if(enemyArr.includes((i*10+j).toString())){
+          pathIdArr.push(i*10+j);
+          break;
+          }
+          else if(friendlyArr.includes((i*10+j).toString())){
+          break;
+          }
+          else{
+          pathIdArr.push(i*10+j);
+          }
+     }
     
     for(var i=x-1,j=y+1;i>=1&&j<=8;i--,j++){
-           pathIdArr.push(i*10+j);
-      }
+          if(enemyArr.includes((i*10+j).toString())){
+          pathIdArr.push(i*10+j);
+          break;
+          }
+          else if(friendlyArr.includes((i*10+j).toString())){
+          break;
+          }
+          else{
+          pathIdArr.push(i*10+j);
+          }
+     }
     
     for(var i=x+1,j=y+1;i<=8&&j<=8;i++,j++){
-           pathIdArr.push(i*10+j);
-      }
+          if(enemyArr.includes((i*10+j).toString())){
+          pathIdArr.push(i*10+j);
+          break;
+          }
+          else if(friendlyArr.includes((i*10+j).toString())){
+          break;
+          }
+          else{
+          pathIdArr.push(i*10+j);
+          }
+     }
     
     for(var i=x-1,j=y-1;i>=1&&j>=1;i--,j--){
-           pathIdArr.push(i*10+j);
-      }
+          if(enemyArr.includes((i*10+j).toString())){
+          pathIdArr.push(i*10+j);
+          break;
+          }
+          else if(friendlyArr.includes((i*10+j).toString())){
+          break;
+          }
+          else{
+          pathIdArr.push(i*10+j);
+          }
+    }
     
     console.log(pathIdArr);                  //prints the array 
+    return pathIdArr;
     }
 
 
 
-function queensPath(chessBoxId) {              //queen's path calculater function
+function queensPath(chessBoxId,enemyArr,friendlyArr) {              //queen's path calculater function
         var pathIdArr=[];                           //id array of possible path
         var x=parseInt(chessBoxId.charAt(0));   //if 'chessBoxId=43' which is string,takes 1st char so x=4
         var y=parseInt(chessBoxId.charAt(1));   //if 'chessBoxId=43' which is string,takes 2nd char so y=4
     for(var i=x,j=y+1;j<=8;j++){
-            pathIdArr.push(i*10+j);
-       }
+          if(enemyArr.includes((i*10+j).toString())){
+          pathIdArr.push(i*10+j);
+          break;
+          }
+          else if(friendlyArr.includes((i*10+j).toString())){
+          break;
+          }
+          else{
+          pathIdArr.push(i*10+j);
+          }
+     }
     for(var i=x,j=y-1;j>=1;j--){
-            pathIdArr.push(i*10+j);
-       }
+          if(enemyArr.includes((i*10+j).toString())){
+          pathIdArr.push(i*10+j);
+          break;
+          }
+          else if(friendlyArr.includes((i*10+j).toString())){
+          break;
+          }
+          else{
+          pathIdArr.push(i*10+j);
+          }
+     }
     for(var i=x+1,j=y;i<=8;i++){
-            pathIdArr.push(i*10+j);
-       }
+          if(enemyArr.includes((i*10+j).toString())){
+          pathIdArr.push(i*10+j);
+          break;
+          }
+          else if(friendlyArr.includes((i*10+j).toString())){
+          break;
+          }
+          else{
+          pathIdArr.push(i*10+j);
+          }
+     }
     for(var i=x-1,j=y;i>=1;i--){
-            pathIdArr.push(i*10+j);
-       }
+          if(enemyArr.includes((i*10+j).toString())){
+          pathIdArr.push(i*10+j);
+          break;
+          }
+          else if(friendlyArr.includes((i*10+j).toString())){
+          break;
+          }
+          else{
+          pathIdArr.push(i*10+j);
+          }
+     }
     for(var i=x+1,j=y-1;i<=8&&j>=1;j--,i++){
-               pathIdArr.push(i*10+j);
+          if(enemyArr.includes((i*10+j).toString())){
+          pathIdArr.push(i*10+j);
+          break;
           }
+          else if(friendlyArr.includes((i*10+j).toString())){
+          break;
+          }
+          else{
+          pathIdArr.push(i*10+j);
+          }
+     }
     for(var i=x-1,j=y+1;i>=1&&j<=8;i--,j++){
-               pathIdArr.push(i*10+j);
+          if(enemyArr.includes((i*10+j).toString())){
+          pathIdArr.push(i*10+j);
+          break;
           }
+          else if(friendlyArr.includes((i*10+j).toString())){
+          break;
+          }
+          else{
+          pathIdArr.push(i*10+j);
+          }
+     }
         
     for(var i=x+1,j=y+1;i<=8&&j<=8;i++,j++){
-               pathIdArr.push(i*10+j);
+          if(enemyArr.includes((i*10+j).toString())){
+          pathIdArr.push(i*10+j);
+          break;
           }
+          else if(friendlyArr.includes((i*10+j).toString())){
+          break;
+          }
+          else{
+          pathIdArr.push(i*10+j);
+          }
+     }
     for(var i=x-1,j=y-1;i>=1&&j>=1;i--,j--){
-               pathIdArr.push(i*10+j);
+          if(enemyArr.includes((i*10+j).toString())){
+          pathIdArr.push(i*10+j);
+          break;
           }
+          else if(friendlyArr.includes((i*10+j).toString())){
+          break;
+          }
+          else{
+          pathIdArr.push(i*10+j);
+          }
+     }
     console.log(pathIdArr);                  //prints the array 
+    return pathIdArr;
 }
 
-function knightsPath(chessBoxId) {              //knight's path calculater function
+function knightsPath(chessBoxId,enemyArr,friendlyArr) {              //knight's path calculater function
 
         var pathIdArr=[];                           //id array of possible path
         
@@ -139,41 +286,122 @@ function knightsPath(chessBoxId) {              //knight's path calculater funct
         var y=parseInt(chessBoxId.charAt(1));   //if 'chessBoxId=43' which is string,takes 2nd char so y=4
      if((x+2)<=8){                                //for top(left,right) path
           if((y-1)>=1){                           //left
-                  pathIdArr.push(((x+2)*10)+(y-1))   
+              //    pathIdArr.push(((x+2)*10)+(y-1))   
+                  if(enemyArr.includes((((x+2)*10)+(y-1)).toString())){
+                    pathIdArr.push(((x+2)*10)+(y-1));
+                   
+                    }
+                    else if(friendlyArr.includes((((x+2)*10)+(y-1)).toString())){
+                    
+                    }
+                    else{
+                    pathIdArr.push(((x+2)*10)+(y-1));
+                    }
           }
           if((y+1)<=8){                           //right
-               pathIdArr.push(((x+2)*10)+(y+1))
+              // pathIdArr.push(((x+2)*10)+(y+1))
+              if(enemyArr.includes((((x+2)*10)+(y+1)).toString())){
+               pathIdArr.push(((x+2)*10)+(y+1));
+               
+               }
+               else if(friendlyArr.includes((((x+2)*10)+(y+1)).toString())){
+               
+               }
+               else{
+               pathIdArr.push(((x+2)*10)+(y+1));
+               }
           }
         }
      if((x-2)>=1){                               //for bottom(left,right) path                                      
           if((y-1)>=1){                             //left
-               pathIdArr.push(((x-2)*10)+(y-1))
+             //  pathIdArr.push(((x-2)*10)+(y-1))
+             if(enemyArr.includes((((x-2)*10)+(y-1)).toString())){
+               pathIdArr.push(((x-2)*10)+(y-1));
+               
+               }
+               else if(friendlyArr.includes((((x-2)*10)+(y-1)).toString())){
+               
+               }
+               else{
+               pathIdArr.push(((x-2)*10)+(y-1));
+               }
           }
           if((y+1)<=8){                             //right
-            pathIdArr.push(((x-2)*10)+(y+1))
+           // pathIdArr.push(((x-2)*10)+(y+1))
+           if(enemyArr.includes((((x-2)*10)+(y+1)).toString())){
+               pathIdArr.push(((x-2)*10)+(y+1));
+              
+               }
+               else if(friendlyArr.includes((((x-2)*10)+(y+1)).toString())){
+             
+               }
+               else{
+               pathIdArr.push(((x-2)*10)+(y+1));
+               }
           }
      }
      if((y-2)>=1){                               //for left(top,bottom) path                                      
           if((x-1)>=1){                            //bottom
-               pathIdArr.push(((x-1)*10)+(y-2))
+              // pathIdArr.push(((x-1)*10)+(y-2))
+              if(enemyArr.includes((((x-1)*10)+(y-2)).toString())){
+               pathIdArr.push(((x-1)*10)+(y-2));
+              
+               }
+               else if(friendlyArr.includes((((x-1)*10)+(y-2)).toString())){
+              
+               }
+               else{
+               pathIdArr.push(((x-1)*10)+(y-2));
+               }
           }
           if((x+1)<=8){                            //top
-            pathIdArr.push(((x+1)*10)+(y-2))
+            //pathIdArr.push(((x+1)*10)+(y-2))
+            if(enemyArr.includes((((x+1)*10)+(y-2)).toString())){
+               pathIdArr.push(((x+1)*10)+(y-2));
+              
+               }
+               else if(friendlyArr.includes((((x+1)*10)+(y-2)).toString())){
+              
+               }
+               else{
+               pathIdArr.push(((x+1)*10)+(y-2));
+               }
           }
      }
      if((y+2)<=8){                               //for left(top,bottom) path                                      
           if((x-1)>=1){                            //bottom
-               pathIdArr.push(((x-1)*10)+(y+2))
+              // pathIdArr.push(((x-1)*10)+(y+2))
+              if(enemyArr.includes((((x-1)*10)+(y+2)).toString())){
+               pathIdArr.push(((x-1)*10)+(y+2));
+              
+               }
+               else if(friendlyArr.includes((((x-1)*10)+(y+2)).toString())){
+              
+               }
+               else{
+               pathIdArr.push(((x-1)*10)+(y+2));
+               }
           }
           if((x+1)<=8){                            //top
-            pathIdArr.push(((x+1)*10)+(y+2))
+           // pathIdArr.push(((x+1)*10)+(y+2))
+           if(enemyArr.includes((((x+1)*10)+(y+2)).toString())){
+               pathIdArr.push(((x+1)*10)+(y+2));
+              
+               }
+               else if(friendlyArr.includes((((x+1)*10)+(y+2)).toString())){
+              
+               }
+               else{
+               pathIdArr.push(((x+1)*10)+(y+2));
+               }
           }
      }
 
      console.log(pathIdArr);                  //prints the array 
+     return pathIdArr;
 } 
 
-function kingsPath(chessBoxId) {              //king's path calculater function
+function kingsPath(chessBoxId,enemyArr,friendlyArr) {              //king's path calculater function
 
 var pathIdArr=[];                           //id array of possible path
 
@@ -182,22 +410,63 @@ var x=parseInt(chessBoxId.charAt(0));   //if 'chessBoxId=43' which is string,tak
 var y=parseInt(chessBoxId.charAt(1));   //if 'chessBoxId=43' which is string,takes 2nd char so y=4
 
 if((x+1)<=8){
-     pathIdArr.push((x+1)*10+y)
+     //pathIdArr.push((x+1)*10+y)
+     if(enemyArr.includes(((x+1)*10+y).toString())){
+          pathIdArr.push((x+1)*10+y);
+         
+          }
+          else if(friendlyArr.includes(((x+1)*10+y).toString())){
+         
+          }
+          else{
+          pathIdArr.push((x+1)*10+y);
+          }
 }
 if((x-1)>=1){
-     pathIdArr.push((x-1)*10+y)
+   //  pathIdArr.push((x-1)*10+y)
+   if(enemyArr.includes(((x-1)*10+y).toString())){
+     pathIdArr.push((x-1)*10+y);
+    
+     }
+     else if(friendlyArr.includes(((x-1)*10+y).toString())){
+    
+     }
+     else{
+     pathIdArr.push((x-1)*10+y);
+     }
 }
 if((y+1)<=8){
-     pathIdArr.push(x*10+(y+1))
+   //  pathIdArr.push(x*10+(y+1))
+   if(enemyArr.includes((x*10+(y+1)).toString())){
+     pathIdArr.push(x*10+(y+1));
+    
+     }
+     else if(friendlyArr.includes((x*10+(y+1)).toString())){
+    
+     }
+     else{
+     pathIdArr.push(x*10+(y+1));
+     }
 }
 if((y-1)>=1){
-     pathIdArr.push(x*10+(y-1))
+    // pathIdArr.push(x*10+(y-1))
+     if(enemyArr.includes(x*10+(y-1).toString())){
+          pathIdArr.push(x*10+(y-1));
+         
+          }
+          else if(friendlyArr.includes(x*10+(y-1).toString())){
+         
+          }
+          else{
+          pathIdArr.push(x*10+(y-1));
+          }
 }
 
 console.log(pathIdArr);                  //prints the array 
+return pathIdArr;
 } 
 
-function pawnsPath(chessBoxId,chessPieceId,enemyArr,friendlyArr) {              //pawn's path calculater function
+function pawnsPath(chessBoxId,chessPieceId,enemyArr,friendlyArr){              //pawn's path calculater function
 
 var pathIdArr=[];                           //id array of possible path
 
@@ -356,17 +625,18 @@ function PostionArrayWhite(){    //return white position array of ids
 
 
 
-function start1(){
-// start('11');
-// console.log('bishop path---------------------------------------------------------------------------------------');
-// bishopPath('35'); 
+function start(){
+     var enemyArr=['76','74'];
+ var friendlyArr=['63','36'];
+     rooksPath('43',enemyArr,friendlyArr)
+ console.log('bishop path---------------------------------------------------------------------------------------');
+bishopPath('35',enemyArr,friendlyArr);
+ console.log('knights path---------------------------------------------------------------------------------------');
+ knightsPath('55',enemyArr,friendlyArr);
 // console.log('knights path---------------------------------------------------------------------------------------');
-// knightsPath('55');
-// console.log('knights path---------------------------------------------------------------------------------------');
-// var enemyArr=['65'];
-// var friendlyArr=['64'];
+ 
 
 // pawnsPath('74','wp4',enemyArr,friendlyArr);
-PostionArrayWhite();
+//PostionArrayWhite();
 
 }
