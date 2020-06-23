@@ -23,8 +23,8 @@ var white={
     'queen1':{cell:'85',status:'active',role:'queen',src:'chessPieces/whiteQueen.JPG',id:'wq'},
     'bishop1':{cell:'83',status:'active',role:'bishop',src:'chessPieces/whiteBishop.JPG',id:'wb1'},
     'bishop2':{cell:'86',status:'active',role:'bishop',src:'chessPieces/whiteBishop.JPG',id:'wb2'},
-    'knight1':{cell:'82',status:'active',role:'knight',src:'chessPieces/whiteKnight.JPG"',id:'wk1'},
-    'knight2':{cell:'87',status:'active',role:'knight',src:'chessPieces/whiteKnight.JPG"',id:'wk2'},
+    'knight1':{cell:'82',status:'active',role:'knight',src:'chessPieces/whiteKnight.JPG',id:'wk1'},
+    'knight2':{cell:'87',status:'active',role:'knight',src:'chessPieces/whiteKnight.JPG',id:'wk2'},
     'rook1':{cell:'81',status:'active',role:'rook',src:'chessPieces/whiteRook.JPG',id:'wr1'},
     'rook2':{cell:'88',status:'active',role:'rook',src:'chessPieces/whiteRook.JPG',id:'wr2'},
     'pawn1':{cell:'71',status:'active',role:'pawn',fresh:'yes',src:'chessPieces/whitePawn.JPG',id:'wp1'},
@@ -211,24 +211,30 @@ function MovePiece(chessboxId,chessPieceId,playerObj){              //moves piec
           else if(playerObj['pawn'+chessPieceId.charAt(2)]['fresh']=='yes'){ //special condition for pawns for thier first play
                playerObj['pawn'+chessPieceId.charAt(2)]['fresh']='no';
                document.getElementById(chessboxId).appendChild(elem);
+               changePlayer();
           }
           else{
                document.getElementById(chessboxId).appendChild(elem);
+               changePlayer();
           }
      }
      else{
           document.getElementById(chessboxId).appendChild(elem);      //move piece to cell(box)
+          changePlayer();
      }
 
-     changePlayer();
+    
 
     
     
 }
 
 function enableRoleChangeDiv(chessboxId,chessPieceId){                                                      //change role of pawn function 1
-document.getElementById("chooseRole").style.display="block";
-document.getElementById("changeRoleBtn").onclick="changeRoleOfPawn('"+chessPieceId+"','"+chessboxId+"')";
+debugger;
+     document.getElementById("chooseRole").style.display="block";
+//document.getElementById("changeRoleBtn").onclick="changeRoleOfPawn('"+chessPieceId+"','"+chessboxId+"')";
+document.getElementById("changeRoleBtn").setAttribute("onclick","changeRoleOfPawn('"+chessPieceId+"','"+chessboxId+"')");
+
 }
 
 function changeRoleOfPawn(chessPieceId,chessboxId){                                                         //change role of pawn function 2
@@ -251,24 +257,27 @@ function changeRoleOfPawn(chessPieceId,chessboxId){                             
 
 function RoleOfPawn(chessboxId,chessPieceId,role){                                                             //change role of pawn function 3
      if(chessPieceId.charAt(0)=='b'){
-          FinalRoleChangeOfPawn(chessboxId,chessPieceId,role,playerObj)
+          FinalRoleChangeOfPawn(chessboxId,chessPieceId,role,black)
      }
      else{
-          FinalRoleChangeOfPawn(chessboxId,chessPieceId,role,playerObj)
+          FinalRoleChangeOfPawn(chessboxId,chessPieceId,role,white)
      }
 }
 
 function FinalRoleChangeOfPawn(chessboxId,chessPieceId,role,playerObj){                                        //change role of pawn function 4
      var elem = document.createElement("img");
      elem.setAttribute("id",chessPieceId);
-     elem.src=playerObj[role+1]['src'];
+     elem.src=playerObj[role+'1']['src'];
      for(var k in playerObj){
           if(playerObj[k]['id']==chessPieceId){
                playerObj[k]['role']=role;                        //changes role in player obj
+               playerObj[k]['src']=playerObj[role+'1']['src'];   // changes src of img of chess piece
+               playerObj[k]['cell']=chessboxId;                  
                break;
           }
      }   
-     document.getElementById(chessboxId).appendChild(elem);      
+     document.getElementById(chessboxId).appendChild(elem);    
+     changePlayer();  
 } 
 
 function markPieceDeadInObj(playerObj,chessBoxId){               //changes status=dead function in playerObj
