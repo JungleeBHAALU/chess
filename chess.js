@@ -202,11 +202,11 @@ function MovePiece(chessboxId,chessPieceId,playerObj){              //moves piec
      }    
      
      if(chessPieceId.charAt(1)=='p'){                                   //special Condition for pawns only
-          if(playerCount==0&&chessboxId.charAt(0)=='8'){
-               enableRoleChangeDiv(chessboxId,chessPieceId);
+          if(playerCount==0&&chessboxId.charAt(0)=='8'&&playerObj['pawn'+chessPieceId.charAt(2)]['role']=='pawn'){
+               enableRoleChangeDiv(chessboxId,chessPieceId,playerObj);
           }
-          else if(playerCount==1&&chessboxId.charAt(0)=='1'){
-               enableRoleChangeDiv(chessboxId,chessPieceId);
+          else if(playerCount==1&&chessboxId.charAt(0)=='1'&&playerObj['pawn'+chessPieceId.charAt(2)]['role']=='pawn'){
+               enableRoleChangeDiv(chessboxId,chessPieceId,playerObj);
           }
           else if(playerObj['pawn'+chessPieceId.charAt(2)]['fresh']=='yes'){ //special condition for pawns for thier first play
                playerObj['pawn'+chessPieceId.charAt(2)]['fresh']='no';
@@ -229,12 +229,25 @@ function MovePiece(chessboxId,chessPieceId,playerObj){              //moves piec
     
 }
 
-function enableRoleChangeDiv(chessboxId,chessPieceId){                                                      //change role of pawn function 1
-debugger;
+function enableRoleChangeDiv(chessboxId,chessPieceId,playerObj){                                                      //change role of pawn function 1
+
+
      document.getElementById("chooseRole").style.display="block";
 //document.getElementById("changeRoleBtn").onclick="changeRoleOfPawn('"+chessPieceId+"','"+chessboxId+"')";
 document.getElementById("changeRoleBtn").setAttribute("onclick","changeRoleOfPawn('"+chessPieceId+"','"+chessboxId+"')");
+//document.getElementById('GameTable').style.pointerEvents = 'none';
+ removeHighlightPath();
+ disablePlayerToPlaySpecialConditionForPawnRoleChange(playerObj,chessPieceId); //disable Player To Play Special Condition For Pawn Role Change
 
+
+}
+function disablePlayerToPlaySpecialConditionForPawnRoleChange(playerObj,chessPieceId){
+     for(var k in playerObj){
+          if(playerObj[k]['status']=='active'&&playerObj[k]['id']!=chessPieceId){
+               var elem=document.getElementById(playerObj[k]['id']);
+               elem.onclick="";
+          }
+     };
 }
 
 function changeRoleOfPawn(chessPieceId,chessboxId){                                                         //change role of pawn function 2
@@ -277,6 +290,9 @@ function FinalRoleChangeOfPawn(chessboxId,chessPieceId,role,playerObj){         
           }
      }   
      document.getElementById(chessboxId).appendChild(elem);    
+     document.getElementById("chooseRole").style.display="none";
+     //document.getElementById("changeRoleBtn").onclick="changeRoleOfPawn('"+chessPieceId+"','"+chessboxId+"')";
+     document.getElementById("changeRoleBtn").setAttribute("onclick","");
      changePlayer();  
 } 
 
