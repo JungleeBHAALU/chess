@@ -391,16 +391,16 @@ if(playerCount==0){
                if(!(enemyArr.includes(((x+2)*10+y).toString()) || friendlyArr.includes(((x+2)*10+y).toString()))){ //checks enemy or freindly troops are there
                pathIdArr.push((x+2)*10+y);
                }
-               if((y-1)>=1){
-                    if(enemyArr.includes(((x+2)*10+(y-1)).toString())){     //checks enemy troops are there and then adds id 
-                    pathIdArr.push((x+2)*10+(y-1));  
-                    }
-               }  
-            if((y+1)<=8){
-               if(enemyArr.includes(((x+2)*10+(y+1)).toString())){     //checks enemy troops are there and then adds id 
-                    pathIdArr.push((x+2)*10+(y+1));  
-               }
-            }  
+          //      if((y-1)>=1){
+          //           if(enemyArr.includes(((x+2)*10+(y-1)).toString())){     //checks enemy troops are there and then adds id 
+          //           pathIdArr.push((x+2)*10+(y-1));  
+          //           }
+          //      }  
+          //   if((y+1)<=8){
+          //      if(enemyArr.includes(((x+2)*10+(y+1)).toString())){     //checks enemy troops are there and then adds id 
+          //           pathIdArr.push((x+2)*10+(y+1));  
+          //      }
+          //   }  
          }
          
          
@@ -451,16 +451,16 @@ var flag=0;
           if(!(enemyArr.includes(((x-2)*10+y).toString()) || friendlyArr.includes(((x-2)*10+y).toString()))){ //checks enemy or freindly troops are there
                 pathIdArr.push((x-2)*10+y);
           }
-                if((y-1)>=1){
-                  if(enemyArr.includes(((x-2)*10+(y-1)).toString())){     //checks enemy troops are there and then adds id 
-                     pathIdArr.push((x-2)*10+(y-1));  
-                }
-           }  
-             if((y+1)<=8){
-                if(enemyArr.includes(((x-2)*10+(y+1)).toString())){     //checks enemy troops are there and then adds id 
-                     pathIdArr.push((x-2)*10+(y+1));  
-                }
-             }  
+          //       if((y-1)>=1){
+          //         if(enemyArr.includes(((x-2)*10+(y-1)).toString())){     //checks enemy troops are there and then adds id 
+          //            pathIdArr.push((x-2)*10+(y-1));  
+          //       }
+          //  }  
+          //    if((y+1)<=8){
+          //       if(enemyArr.includes(((x-2)*10+(y+1)).toString())){     //checks enemy troops are there and then adds id 
+          //            pathIdArr.push((x-2)*10+(y+1));  
+          //       }
+          //    }  
           }
           
           
